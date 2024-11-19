@@ -2,7 +2,6 @@
   let audioCtx;
   let gainNode;
 
-  // Create the Web Audio API context
   function setupAudioBoost() {
     const video = document.querySelector("video");
     if (!video) return;
@@ -15,21 +14,18 @@
     }
   }
 
-  // Adjust gain (volume boost)
   function setVolumeBoost(boostLevel) {
     if (gainNode) {
       gainNode.gain.value = boostLevel;
     }
   }
 
-  // Observe DOM for video elements
   const observer = new MutationObserver(() => {
     setupAudioBoost();
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // Listen for messages from popup to adjust volume
   chrome.runtime.onMessage.addListener((message) => {
     if (message.type === "setBoost") {
       setVolumeBoost(message.boostLevel);
