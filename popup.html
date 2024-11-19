@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,23 +11,19 @@
 <body>
   <div class="container">
     <h1>Volume Peeker</h1>
-    <p>Boost your YouTube volume beyond the normal limit!
-  
-      
-    </p>
-    
-    
-    
-    
+    <p>Boost your YouTube volume beyond the normal limit!</p>
     <div class="slider-container">
       <label for="boostSlider">Volume Boost:</label>
-      <input type="range" id="boostSlider" min="1" max="5" step="0.1" value="1">
+      <input type="range" id="boostSlider" min="0" max="5" step="0.1" value="0">
       <div class="slider-value">
-        <span id="boostValue">1x</span>
+        <span id="boostValue">0x</span>
       </div>
     </div>
-    
+    <button id="resetButton">Reset</button>
+    <br>
+
     <small>Devloped by : Amit Kumar Patra</small>
+
   </div>
   <script src="popup.js"></script>
 </body>
