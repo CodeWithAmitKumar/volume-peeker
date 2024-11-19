@@ -18,14 +18,14 @@ slider.addEventListener("input", () => {
 
 // Reset button functionality
 resetButton.addEventListener("click", () => {
-  slider.value = 0;
-  updateBoostLevel(0);
+  slider.value = 1; // Reset to normal volume level (1x)
+  updateBoostLevel(1);
 });
 
-// Reset volume to 0 when the popup closes
+// Reset volume to 1 when the popup closes
 window.addEventListener("beforeunload", () => {
-  updateBoostLevel(0);
+  updateBoostLevel(1);
 });
 
-// Initialize slider to the default value (0x)
-updateBoostLevel(0);
+// Initialize slider to the default value (1x)
+updateBoostLevel(1);
