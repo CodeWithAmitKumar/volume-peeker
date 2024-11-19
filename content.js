@@ -1,18 +1,22 @@
 (function () {
   let audioCtx;
   let gainNode;
+  let mediaElementSource;
 
-  // Create the Web Audio API context and set default gain
+  // Setup Web Audio API and connect video element
   function setupAudioBoost() {
     const video = document.querySelector("video");
     if (!video) return;
 
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const source = audioCtx.createMediaElementSource(video);
       gainNode = audioCtx.createGain();
-      gainNode.gain.value = 1; // Normal volume
-      source.connect(gainNode).connect(audioCtx.destination);
+
+      // Check if mediaElementSource already exists
+      if (!mediaElementSource) {
+        mediaElementSource = audioCtx.createMediaElementSource(video);
+        mediaElementSource.connect(gainNode).connect(audioCtx.destination);
+      }
     }
   }
 
