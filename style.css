@@ -101,3 +101,6 @@ input[type="range"]::-moz-range-thumb {
     opacity: 1;
   }
 }
+small{
+  font-size: 10px;
+}
