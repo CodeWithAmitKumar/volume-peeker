@@ -1,23 +1,22 @@
 (function () {
   let audioCtx;
   let gainNode;
-  let mediaElementSource;
+  const connectedVideos = new Set(); // Track connected video elements
 
   // Setup Web Audio API and connect video element
   function setupAudioBoost() {
     const video = document.querySelector("video");
-    if (!video) return;
+    if (!video || connectedVideos.has(video)) return; // Skip if already connected
 
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       gainNode = audioCtx.createGain();
-
-      // Check if mediaElementSource already exists
-      if (!mediaElementSource) {
-        mediaElementSource = audioCtx.createMediaElementSource(video);
-        mediaElementSource.connect(gainNode).connect(audioCtx.destination);
-      }
     }
+
+    // Create and connect the media source node if not already connected
+    const mediaElementSource = audioCtx.createMediaElementSource(video);
+    mediaElementSource.connect(gainNode).connect(audioCtx.destination);
+    connectedVideos.add(video); // Mark this video as connected
   }
 
   // Adjust gain (volume boost)
